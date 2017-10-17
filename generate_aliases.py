@@ -15,6 +15,7 @@
 # limitations under the License.
 
 import itertools
+import sys
 
 def main():
     # (alias, full, restrict_to_aliases, incompatible_with)
@@ -73,10 +74,13 @@ def main():
     out = gen(parts)
     out = filter(is_valid, out)
 
+    # prepare output
+    if not sys.stdout.isatty():
+        with open('license_header', 'r') as f: print f.read()
     for cmd in out:
         print "alias {}='{}'".format(
             ''.join([a[0] for a in cmd]),
-            ' '.join([a[1] for a in cmd]),
+            ' '.join([a[1] for a in cmd])
         )
 
 def gen(parts):
