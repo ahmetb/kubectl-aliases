@@ -33,7 +33,6 @@ def main():
 
     args=[
         ('oyaml','-o=yaml', ['g']),
-        # ('f', '-f', ['g', 'd', 'rm']),
         ('owide','-o=wide', ['g']),
         ('all', '--all-namespaces', ['g']),
         ('w', '--watch', ['g']),
