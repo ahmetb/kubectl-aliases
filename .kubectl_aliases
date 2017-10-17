@@ -1,3 +1,5 @@
+alias k='kubectl'
+alias ks='kubectl --namespace=kube-system'
 alias ka='kubectl apply -f'
 alias ksa='kubectl --namespace=kube-system apply -f'
 alias kex='kubectl exec -i -t'
