@@ -2,7 +2,7 @@ import itertools
 
 
 def main():
-    # (alias,full,restrict_to_aliases)
+    # (alias, full, restrict_to_aliases)
 
     cmds=[
         ('k', 'kubectl', None),
@@ -13,6 +13,7 @@ def main():
     ]
 
     ops=[
+        ('a','apply -f', None),
         ('g','get', None),
         ('d','describe', None),
         ('rm','delete', None),
@@ -21,16 +22,17 @@ def main():
     ]
 
     res=[
-        ('po','pod', ['g','d','lo']),
-        ('dep','deployment', ['g','d','lo']),
-        ('svc','service', ['g','d']),
-        ('ing','ingress', ['g','d']),
-        ('cm','configmap', ['g','d']),
-        ('sec','secret', ['g','d']),
+        ('po','pod', ['g','d','rm','lo']),
+        ('dep','deployment', ['g','d','rm','lo']),
+        ('svc','service', ['g','d','rm']),
+        ('ing','ingress', ['g','d','rm']),
+        ('cm','configmap', ['g','d','rm']),
+        ('sec','secret', ['g','d','rm']),
     ]
 
     args=[
         ('oyaml','-o=yaml', ['g']),
+        # ('f', '-f', ['g', 'd', 'rm']),
         ('owide','-o=wide', ['g']),
         ('all', '--all-namespaces', ['g']),
         ('w', '--watch', ['g']),
@@ -47,6 +49,13 @@ def main():
     ]
 
     out = gen(parts)
+    out = filter(is_valid, out)
+
+    for cmd in out:
+        print "alias {}='{}'".format(
+            ''.join([a[0] for a in cmd]),
+            ' '.join([a[1] for a in cmd]),
+        )
 
 def gen(parts):
     out = [()]
@@ -66,15 +75,31 @@ def gen(parts):
                 new_combos += list(itertools.permutations(c))
             combos = new_combos
 
-        print '-----'
         new_out=[]
         for segment in combos:
             for stuff in orig:
                 new_out.append(stuff+segment)
-            # print [s[0] for s in segment] if len(segment) else "[]", '-->', orig
         out=new_out
-    for l in out:
-        print ' '.join([s[0] for s in l])
+    return out
+
+def is_valid(cmd):
+    for i in xrange(0, len(cmd)):
+        restrictions=cmd[i][2]
+        if not restrictions: continue
+
+        found=False
+        for r in restrictions:
+            found=False
+
+            for j in xrange(0, i):
+                if cmd[j][0] == r:
+                    found=True
+                    break
+            if found:
+                break
+        if restrictions and not found:
+            return False
+    return True
 
 def combinations(a, n, include_0=True):
     l = []
