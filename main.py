@@ -13,8 +13,8 @@ def main():
     ]
 
     ops=[
-        ('d','describe', None),
         ('g','get', None),
+        ('d','describe', None),
         ('rm','delete', None),
         ('ex','exec -i -t', None),
         ('lo','logs -f', None),
@@ -49,17 +49,17 @@ def main():
     out = gen(parts)
 
 def gen(parts):
-    out = ['']
+    out = [()]
     for (items, optional, take_exactly_one) in parts:
-        combos = []
         orig=list(out)
+        combos = []
 
         if optional and take_exactly_one: combos=combos.append([])
 
         if take_exactly_one: combos = combinations(items, 1, include_0=optional)
         else: combos = combinations(items, len(items), include_0=optional)
 
-                # permutate the combinations if optional
+        # permutate the combinations if optional (args are not positional)
         if optional:
             new_combos = []
             for c in combos:
@@ -67,18 +67,14 @@ def gen(parts):
             combos = new_combos
 
         print '-----'
-
         new_out=[]
-        for c in combos:
-            segment = ''.join([s[0] for s in c])
-            print segment if segment else "''"
+        for segment in combos:
             for stuff in orig:
                 new_out.append(stuff+segment)
-            # print [s[0] for s in c] if len(c) else "[]", '-->', orig
-
-        print '\t', '\n\t'.join(new_out)
+            # print [s[0] for s in segment] if len(segment) else "[]", '-->', orig
         out=new_out
-
+    for l in out:
+        print ' '.join([s[0] for s in l])
 
 def combinations(a, n, include_0=True):
     l = []
