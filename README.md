@@ -3,8 +3,8 @@
 This repository contains [a script](generate_aliases.py) to generate hundreds of
 convenient kubectl aliases programmatically.
 
-You can directly download the [`.kubectl_aliases` file](.kubectl_aliases) and
-save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
+You can directly download the [`.kubectl_aliases` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases)
+and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 
     source ~/.kubectl_aliases
 
