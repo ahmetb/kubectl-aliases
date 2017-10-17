@@ -15,11 +15,11 @@ def main():
 
     ops=[
         ('a','apply -f', None),
+        ('ex','exec -i -t', None),
+        ('lo','logs -f', None),
         ('g','get', None),
         ('d','describe', None),
         ('rm','delete', None),
-        ('ex','exec -i -t', None),
-        ('lo','logs -f', None),
     ]
 
     res=[
