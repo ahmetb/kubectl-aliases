@@ -17,40 +17,46 @@
 import itertools
 
 def main():
-    # (alias, full, restrict_to_aliases)
+    # (alias, full, restrict_to_aliases, incompatible_with)
 
     cmds=[
-        ('k', 'kubectl', None),
+        ('k', 'kubectl', None, None),
     ]
 
     globs=[
-        ('s','--namespace=kube-system', None),
+        ('sys','--namespace=kube-system', None, None),
     ]
 
     ops=[
-        ('a','apply -f', None),
-        ('ex','exec -i -t', None),
-        ('lo','logs -f', None),
-        ('g','get', None),
-        ('d','describe', None),
-        ('rm','delete', None),
+        ('a','apply -f', None, None),
+        ('ex','exec -i -t', None, None),
+        ('lo','logs -f', None, None),
+        ('g','get', None, None),
+        ('d','describe', None, None),
+        ('rm','delete', None, None),
     ]
 
     res=[
-        ('po','pod', ['g','d','rm','lo']),
-        ('dep','deployment', ['g','d','rm','lo']),
-        ('svc','service', ['g','d','rm']),
-        ('ing','ingress', ['g','d','rm']),
-        ('cm','configmap', ['g','d','rm']),
-        ('sec','secret', ['g','d','rm']),
+        ('po','pod', ['g','d','rm','lo'], None),
+        ('dep','deployment', ['g','d','rm','lo'], None),
+        ('svc','service', ['g','d','rm'], None),
+        ('ing','ingress', ['g','d','rm'], None),
+        ('cm','configmap', ['g','d','rm'], None),
+        ('sec','secret', ['g','d','rm'], None),
     ]
 
     args=[
-        ('oyaml','-o=yaml', ['g']),
-        ('owide','-o=wide', ['g']),
-        ('all', '--all-namespaces', ['g']),
-        ('w', '--watch', ['g']),
-        ('iu', '--include-uninitialized', ['g']),
+        ('oyaml','-o=yaml', ['g'], ['owide','ojson']),
+        ('owide','-o=wide', ['g'], ['oyaml','ojson']),
+        ('ojson','-o=json', ['g'], ['owide','oyaml']),
+        ('all', '--all-namespaces', ['g'], ['f']),
+        ('w', '--watch', ['g'], ['oyaml','ojson','owide']),
+    ]
+
+    # these accept a value, so they need to be at the end and
+    # mutually exclusive within each other.
+    positional_args=[
+        ('f', '-f', ['g', 'd', 'rm'], [r[0] for r in res]),
     ]
 
     # [(part, optional, take_exactly_one)]
@@ -59,7 +65,8 @@ def main():
         (globs, True, False),
         (ops, True, True),
         (res, True, True),
-        (args, True, False)
+        (args, True, False),
+        (positional_args, True, True),
     ]
 
     out = gen(parts)
@@ -98,21 +105,34 @@ def gen(parts):
 
 def is_valid(cmd):
     for i in xrange(0, len(cmd)):
-        restrictions=cmd[i][2]
-        if not restrictions: continue
-
-        found=False
-        for r in restrictions:
+        # check at least one of requirements are in the cmd
+        requirements=cmd[i][2]
+        if requirements:
             found=False
+            for r in requirements:
+                for j in xrange(0, i):
+                    if cmd[j][0] == r:
+                        found=True
+                        break
+                if found:
+                    break
+            if not found:
+                return False
 
-            for j in xrange(0, i):
-                if cmd[j][0] == r:
-                    found=True
+        # check none of the incompatibilities are in the cmd
+        incompatibilities=cmd[i][3]
+        if incompatibilities:
+            found=False
+            for inc in incompatibilities:
+                for j in xrange(0, i):
+                    if cmd[j][0] == inc:
+                        found=True
+                        break
+                if found:
                     break
             if found:
-                break
-        if restrictions and not found:
-            return False
+                return False
+
     return True
 
 def combinations(a, n, include_0=True):
