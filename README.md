@@ -36,14 +36,14 @@ See [the full list](.kubectl_aliases).
 Have feedback? Something important is missing? Open an issue or suggest a change
 through a pull request.
 
-#### FAQ
+### FAQ
 
 **Does this not slow down my shell start up?** Sourcing the file that contains
 ~500 aliases takes about 30-45 milliseconds in my shell (zsh). I don't think
 it's a big deal for me. Measure it with `echo $(($(date +%s%N)/1000000))`
 command yourself in your .bashrc/.zshrc.
 
-#### Authors
+### Authors
 
 - [@ahmetb](https://twitter.com/ahmetb)
 
