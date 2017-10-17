@@ -1,5 +1,6 @@
-import itertools
+#!/usr/bin/env python2
 
+import itertools
 
 def main():
     # (alias, full, restrict_to_aliases)
