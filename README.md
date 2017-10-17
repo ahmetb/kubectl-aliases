@@ -12,7 +12,7 @@ and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 
 Some of the 578 generated aliases are:
 
-```
+```sh
 alias k='kubectl'
 alias kg='kubectl get'
 alias kgpo='kubectl get pod'
@@ -28,7 +28,6 @@ alias krmingall='kubectl delete ingress --all-namespaces'
 alias kgsvcoyaml='kubectl get service -o=yaml'
 
 alias kgwf='kubectl get --watch -f'
-...
 ...
 ```
 
