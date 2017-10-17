@@ -49,14 +49,15 @@ def main():
         ('oyaml','-o=yaml', ['g'], ['owide','ojson']),
         ('owide','-o=wide', ['g'], ['oyaml','ojson']),
         ('ojson','-o=json', ['g'], ['owide','oyaml']),
-        ('all', '--all-namespaces', ['g'], ['f']),
+        ('all', '--all-namespaces', ['g','rm'], ['f']),
         ('w', '--watch', ['g'], ['oyaml','ojson','owide']),
     ]
 
     # these accept a value, so they need to be at the end and
     # mutually exclusive within each other.
     positional_args=[
-        ('f', '-f', ['g', 'd', 'rm'], [r[0] for r in res]),
+        ('f', '-f', ['g', 'd', 'rm'], [r[0] for r in res]+['all', 'l']),
+        ('l', '-l', ['g', 'd', 'rm'], ['f', 'all']),
     ]
 
     # [(part, optional, take_exactly_one)]
