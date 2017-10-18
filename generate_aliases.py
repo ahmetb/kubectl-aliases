@@ -16,6 +16,7 @@
 
 import itertools
 import sys
+import os.path
 
 def main():
     # (alias, full, restrict_to_aliases, incompatible_with)
@@ -38,7 +39,7 @@ def main():
     ]
 
     res=[
-        ('po','pod', ['g','d','rm','lo'], None),
+        ('po','pods', ['g','d','rm','lo'], None),
         ('dep','deployment', ['g','d','rm','lo'], None),
         ('svc','service', ['g','d','rm'], None),
         ('ing','ingress', ['g','d','rm'], None),
@@ -76,9 +77,10 @@ def main():
 
     # prepare output
     if not sys.stdout.isatty():
-        with open('license_header', 'r') as f: print f.read()
+        header_path=os.path.join(os.path.dirname(os.path.realpath(__file__)), 'license_header')
+        with open(header_path, 'r') as f: print f.read()
     for cmd in out:
-        print "alias {}='{}'".format(
+        print "alias {}='(set -x; {})'".format(
             ''.join([a[0] for a in cmd]),
             ' '.join([a[1] for a in cmd])
         )
