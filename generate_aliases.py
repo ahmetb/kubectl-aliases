@@ -50,7 +50,7 @@ def main():
         ('oyaml','-o=yaml', ['g'], ['owide','ojson']),
         ('owide','-o=wide', ['g'], ['oyaml','ojson']),
         ('ojson','-o=json', ['g'], ['owide','oyaml']),
-        ('all', '--all-namespaces', ['g','rm'], ['f']),
+        ('all', '--all-namespaces', ['g','rm'], ['f', 'sys']),
         ('w', '--watch', ['g'], ['oyaml','ojson','owide']),
     ]
 
