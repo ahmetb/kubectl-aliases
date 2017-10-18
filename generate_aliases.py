@@ -45,13 +45,14 @@ def main():
         ('ing','ingress', ['g','d','rm'], None),
         ('cm','configmap', ['g','d','rm'], None),
         ('sec','secret', ['g','d','rm'], None),
+        ('no','nodes',['g','d'], ['sys']),
     ]
 
     args=[
         ('oyaml','-o=yaml', ['g'], ['owide','ojson']),
         ('owide','-o=wide', ['g'], ['oyaml','ojson']),
         ('ojson','-o=json', ['g'], ['owide','oyaml']),
-        ('all', '--all-namespaces', ['g','rm'], ['f', 'sys']),
+        ('all', '--all-namespaces', ['g','rm'], ['f', 'no', 'sys']),
         ('w', '--watch', ['g'], ['oyaml','ojson','owide']),
     ]
 
@@ -80,7 +81,7 @@ def main():
         header_path=os.path.join(os.path.dirname(os.path.realpath(__file__)), 'license_header')
         with open(header_path, 'r') as f: print f.read()
     for cmd in out:
-        print "alias {}='(set -x; {})'".format(
+        print "alias {}='{}'".format(
             ''.join([a[0] for a in cmd]),
             ' '.join([a[1] for a in cmd])
         )
