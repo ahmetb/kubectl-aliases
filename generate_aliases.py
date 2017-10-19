@@ -33,6 +33,7 @@ def main():
         ('a','apply -f', None, None),
         ('ex','exec -i -t', None, None),
         ('lo','logs -f', None, None),
+        ('p','proxy', None, ['sys']),
         ('g','get', None, None),
         ('d','describe', None, None),
         ('rm','delete', None, None),
@@ -46,6 +47,7 @@ def main():
         ('cm','configmap', ['g','d','rm'], None),
         ('sec','secret', ['g','d','rm'], None),
         ('no','nodes',['g','d'], ['sys']),
+        ('ns','namespaces',['g','d','rm'], ['sys']),
     ]
 
     args=[
@@ -53,6 +55,7 @@ def main():
         ('owide','-o=wide', ['g'], ['oyaml','ojson']),
         ('ojson','-o=json', ['g'], ['owide','oyaml']),
         ('all', '--all-namespaces', ['g','d'], ['rm', 'f', 'no', 'sys']),
+        ('all', '--all', ['rm'], None), # caution: reusing alias
         ('w', '--watch', ['g'], ['oyaml','ojson','owide']),
     ]
 
