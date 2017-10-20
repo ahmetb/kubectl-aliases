@@ -33,8 +33,28 @@ alias kgwf='kubectl get --watch -f'
 
 See [the full list](.kubectl_aliases).
 
-Have feedback? Something important is missing? Open an issue or suggest a change
-through a pull request.
+### Syntax explanation
+
+* **`k`**=`kubectl`
+  * **`sys`**=`--namespace kube-system`
+* commands:
+  * **`g`**=`get`
+  * **`d`**=`describe`
+  * **`rm`**=`delete`
+  * **`a`**:`apply -f`
+  * **`ex`**: `exec -i -t`
+  * **`lo`**: `logs -f`
+* resources:
+  * **`po`**=pod, **`dep`**=`deployment`, **`ing`**=`ingress`,
+    **`svc`**=`service`, **`cm`**=`configmap`, **`sec`=`secret`**,
+    **`ns`**=`namespace`, **`no`**=`node`
+* flags:
+  * output format: **`oyaml`**, **`ojson`**, **`owide`**
+  * **`all`**: `--all` or `--all-namespaces` depending on the command
+  * **`w`**=`-w/--watch`
+* value flags (should be at the end):
+  * **`f`**=`-f/--filename`
+  * **`l`**=`-l/--selector`
 
 ### FAQ
 
