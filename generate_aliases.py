@@ -64,6 +64,7 @@ def main():
     positional_args=[
         ('f', '-f', ['g', 'd', 'rm'], [r[0] for r in res]+['all', 'l']),
         ('l', '-l', ['g', 'd', 'rm'], ['f', 'all']),
+        ('n', '--namespace', ['g', 'd', 'rm', 'lo', 'ex'], ['ns', 'no', 'sys', 'all']),
     ]
 
     # [(part, optional, take_exactly_one)]
