@@ -71,3 +71,7 @@ command yourself in your .bashrc/.zshrc.
 -----
 
 This is not an official Google project.
+
+#### Stargazers over time
+
+[![Stargazers over time](https://starcharts.herokuapp.com/ahmetb/kubectl-aliases.svg)](https://starcharts.herokuapp.com/ahmetb/kubectl-aliases)
