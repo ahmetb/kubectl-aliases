@@ -10,7 +10,7 @@ and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 
 ### Examples
 
-Some of the 600+ generated aliases are:
+Some of the 600 generated aliases are:
 
 ```sh
 alias k='kubectl'

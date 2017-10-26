@@ -40,8 +40,8 @@ def main():
     ]
 
     res=[
-        ('po','pods', ['g','d','rm','lo'], None),
-        ('dep','deployment', ['g','d','rm','lo'], None),
+        ('po','pods', ['g','d','rm'], None),
+        ('dep','deployment', ['g','d','rm'], None),
         ('svc','service', ['g','d','rm'], None),
         ('ing','ingress', ['g','d','rm'], None),
         ('cm','configmap', ['g','d','rm'], None),
