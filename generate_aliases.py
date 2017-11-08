@@ -14,9 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import print_function
 import itertools
-import sys
 import os.path
+import sys
+
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
+
 
 def main():
     # (alias, full, allow_when_oneof, incompatible_with)
@@ -86,12 +93,12 @@ def main():
     # prepare output
     if not sys.stdout.isatty():
         header_path=os.path.join(os.path.dirname(os.path.realpath(__file__)), 'license_header')
-        with open(header_path, 'r') as f: print f.read()
+        with open(header_path, 'r') as f: print(f.read())
     for cmd in out:
-        print "alias {}='{}'".format(
+        print("alias {}='{}'".format(
             ''.join([a[0] for a in cmd]),
             ' '.join([a[1] for a in cmd])
-        )
+        ))
 
 def gen(parts):
     out = [()]
