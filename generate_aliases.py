@@ -19,14 +19,14 @@ import sys
 import os.path
 
 def main():
-    # (alias, full, restrict_to_aliases, incompatible_with)
+    # (alias, full, allow_when_oneof, incompatible_with)
 
     cmds=[
         ('k', 'kubectl', None, None),
     ]
 
     globs=[
-        ('sys','--namespace=kube-system', None, None),
+        ('sys','--namespace=kube-system', None, ['sys']),
     ]
 
     ops=[
@@ -37,6 +37,7 @@ def main():
         ('g','get', None, None),
         ('d','describe', None, None),
         ('rm','delete', None, None),
+        ('run','run --rm -i -t', None, None),
     ]
 
     res=[
@@ -49,12 +50,14 @@ def main():
         ('no','nodes',['g','d'], ['sys']),
         ('ns','namespaces',['g','d','rm'], ['sys']),
     ]
+    res_types = [r[0] for r in res]
 
     args=[
-        ('oyaml','-o=yaml', ['g'], ['owide','ojson']),
+        ('oyaml','-o=yaml', ['g'], ['owide','ojson','sl']),
         ('owide','-o=wide', ['g'], ['oyaml','ojson']),
-        ('ojson','-o=json', ['g'], ['owide','oyaml']),
+        ('ojson','-o=json', ['g'], ['owide','oyaml','sl']),
         ('all', '--all-namespaces', ['g','d'], ['rm', 'f', 'no', 'sys']),
+        ('sl', '--show-labels', ['g'], ['oyaml', 'ojson'] + diff(res_types, ['po','dep'])),
         ('all', '--all', ['rm'], None), # caution: reusing alias
         ('w', '--watch', ['g'], ['oyaml','ojson','owide']),
     ]
@@ -62,7 +65,7 @@ def main():
     # these accept a value, so they need to be at the end and
     # mutually exclusive within each other.
     positional_args=[
-        ('f', '-f', ['g', 'd', 'rm'], [r[0] for r in res]+['all', 'l']),
+        ('f', '-f', ['g', 'd', 'rm'], res_types + ['all', 'l']),
         ('l', '-l', ['g', 'd', 'rm'], ['f', 'all']),
         ('n', '--namespace', ['g', 'd', 'rm', 'lo', 'ex'], ['ns', 'no', 'sys', 'all']),
     ]
@@ -154,5 +157,9 @@ def combinations(a, n, include_0=True):
         l += list(itertools.combinations(a, j))
     return l
 
+def diff(a,b):
+    return list(set(a)-set(b))
+
 if __name__=='__main__':
     main()
+
