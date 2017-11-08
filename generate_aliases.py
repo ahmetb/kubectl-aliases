@@ -27,9 +27,7 @@ except NameError:
 
 
 def main():
-
     # (alias, full, allow_when_oneof, incompatible_with)
-
     cmds = [('k', 'kubectl', None, None)]
 
     globs = [('sys', '--namespace=kube-system', None, ['sys'])]
@@ -57,7 +55,7 @@ def main():
         ]
     res_types = [r[0] for r in res]
 
-    args = [  # caution: reusing alias
+    args = [
         ('oyaml', '-o=yaml', ['g'], ['owide', 'ojson', 'sl']),
         ('owide', '-o=wide', ['g'], ['oyaml', 'ojson']),
         ('ojson', '-o=json', ['g'], ['owide', 'oyaml', 'sl']),
@@ -65,20 +63,18 @@ def main():
          ]),
         ('sl', '--show-labels', ['g'], ['oyaml', 'ojson']
          + diff(res_types, ['po', 'dep'])),
-        ('all', '--all', ['rm'], None),
+        ('all', '--all', ['rm'], None), # caution: reusing the alias
         ('w', '--watch', ['g'], ['oyaml', 'ojson', 'owide']),
         ]
 
     # these accept a value, so they need to be at the end and
     # mutually exclusive within each other.
-
     positional_args = [('f', '-f', ['g', 'd', 'rm'], res_types + ['all'
                        , 'l']), ('l', '-l', ['g', 'd', 'rm'], ['f',
                        'all']), ('n', '--namespace', ['g', 'd', 'rm',
                        'lo', 'ex'], ['ns', 'no', 'sys', 'all'])]
 
     # [(part, optional, take_exactly_one)]
-
     parts = [
         (cmds, False, True),
         (globs, True, False),
@@ -92,7 +88,6 @@ def main():
     out = filter(is_valid, out)
 
     # prepare output
-
     if not sys.stdout.isatty():
         header_path = \
             os.path.join(os.path.dirname(os.path.realpath(__file__)),
@@ -119,7 +114,6 @@ def gen(parts):
             combos = combinations(items, len(items), include_0=optional)
 
         # permutate the combinations if optional (args are not positional)
-
         if optional:
             new_combos = []
             for c in combos:
@@ -138,7 +132,6 @@ def is_valid(cmd):
     for i in xrange(0, len(cmd)):
 
         # check at least one of requirements are in the cmd
-
         requirements = cmd[i][2]
         if requirements:
             found = False
@@ -153,7 +146,6 @@ def is_valid(cmd):
                 return False
 
         # check none of the incompatibilities are in the cmd
-
         incompatibilities = cmd[i][3]
         if incompatibilities:
             found = False
