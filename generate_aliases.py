@@ -33,7 +33,7 @@ def main():
     globs = [('sys', '--namespace=kube-system', None, ['sys'])]
 
     ops = [
-        ('a', 'apply -f', None, None),
+        ('a', 'apply --recursive -f', None, None),
         ('ex', 'exec -i -t', None, None),
         ('lo', 'logs -f', None, None),
         ('p', 'proxy', None, ['sys']),
@@ -69,8 +69,8 @@ def main():
 
     # these accept a value, so they need to be at the end and
     # mutually exclusive within each other.
-    positional_args = [('f', '-f', ['g', 'd', 'rm'], res_types + ['all'
-                       , 'l']), ('l', '-l', ['g', 'd', 'rm'], ['f',
+    positional_args = [('f', '--recursive -f', ['g', 'd', 'rm'], res_types + ['all'
+                       , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm'], ['f',
                        'all']), ('n', '--namespace', ['g', 'd', 'rm',
                        'lo', 'ex'], ['ns', 'no', 'sys', 'all'])]
 
