@@ -48,7 +48,7 @@ func kubectl() { echo $@; command kubectl $@ }
 
 Example:
 
-```
+```sh
 $ ksysgpowslowidel k8s-app=glbc
 + kubectl --namespace=kube-system get pods --watch --show-labels -o=wide -l k8s-app=glbc
 NAME                                  READY     STATUS    RESTARTS   AGE       IP       
