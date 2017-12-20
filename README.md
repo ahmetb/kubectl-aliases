@@ -10,6 +10,14 @@ and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
 ```
 
+If you want full aliases to be printed to the screen before running them,
+add the following line there as well:
+
+```sh
+func kubectl(){ echo "+ kubectl $@"; command kubectl $@ }
+```
+
+
 ### Examples
 
 Some of the 800 generated aliases are:
@@ -36,24 +44,6 @@ alias kgwf='kubectl get --watch -f'
 ```
 
 See [the full list](.kubectl_aliases).
-
-### Enabling the debug mode
-
-Add the following before sourcing the aliases in your .bashrc/.zshrc to
-get the full `kubectl` command printed before executing it:
-
-```sh
-func kubectl() { echo $@; command kubectl $@ }
-```
-
-Example:
-
-```sh
-$ ksysgpowslowidel k8s-app=glbc
-+ kubectl --namespace=kube-system get pods --watch --show-labels -o=wide -l k8s-app=glbc
-NAME                                  READY     STATUS    RESTARTS   AGE       IP       
-l7-default-backend-1044750973-4nr8n   1/1       Running   0          2m        10.32.1.5
-```
 
 ### Syntax explanation
 
