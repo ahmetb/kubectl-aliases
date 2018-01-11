@@ -3,21 +3,6 @@
 This repository contains [a script](generate_aliases.py) to generate hundreds of
 convenient kubectl aliases programmatically.
 
-You can directly download the [`.kubectl_aliases` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases)
-and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
-
-```sh
-[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
-```
-
-If you want full aliases to be printed to the screen before running them,
-add the following line there as well:
-
-```sh
-func kubectl(){ echo "+ kubectl $@"; command kubectl $@ }
-```
-
-
 ### Examples
 
 Some of the 800 generated aliases are:
@@ -45,6 +30,22 @@ alias kgwf='kubectl get --watch -f'
 
 See [the full list](.kubectl_aliases).
 
+### Installation
+
+You can directly download the [`.kubectl_aliases` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases)
+and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
+
+```sh
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+```
+
+**Print the full command before running it:** Add this to your `.bashrc` or
+`.zshrc` file:
+
+```sh
+func kubectl(){ echo "+ kubectl $@"; command kubectl $@ }
+```
+
 ### Syntax explanation
 
 * **`k`**=`kubectl`
@@ -68,7 +69,7 @@ See [the full list](.kubectl_aliases).
 * value flags (should be at the end):
   * **`f`**=`-f/--filename`
   * **`l`**=`-l/--selector`
-
+  
 ### FAQ
 
 **Does this not slow down my shell start up?** Sourcing the file that contains
