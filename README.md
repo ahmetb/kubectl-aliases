@@ -43,9 +43,7 @@ and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 `.zshrc` file:
 
 ```sh
-function kubectl() {
-  echo "+ kubectl $@"; command kubectl $@
-}
+function kubectl() { echo "+ kubectl $@"; command kubectl $@; }
 ```
 
 ### Syntax explanation
