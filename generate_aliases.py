@@ -50,6 +50,12 @@ def main():
         ('ing', 'ingress', ['g', 'd', 'rm'], None),
         ('cm', 'configmap', ['g', 'd', 'rm'], None),
         ('sec', 'secret', ['g', 'd', 'rm'], None),
+        ('jo', 'jobs', ['g', 'd', 'rm'], None),
+        ('cj', 'cronjobs', ['g', 'd', 'rm'], None),
+        ('sc', 'storageclasses', ['g', 'd', 'rm'], None),
+        ('hpa', 'horizontalpodautoscalers', ['g', 'd', 'rm'], None),
+        ('pv', 'persistentvolumes', ['g', 'd', 'rm'], None),
+        ('pvc', 'persistentvolumeclaims', ['g', 'd', 'rm'], None),
         ('no', 'nodes', ['g', 'd'], ['sys']),
         ('ns', 'namespaces', ['g', 'd', 'rm'], ['sys']),
         ]
