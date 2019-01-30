@@ -36,6 +36,7 @@ def main():
         ('a', 'apply --recursive -f', None, None),
         ('ex', 'exec -i -t', None, None),
         ('lo', 'logs -f', None, None),
+        ('lop', 'logs -f -p', None, None),
         ('p', 'proxy', None, ['sys']),
         ('g', 'get', None, None),
         ('d', 'describe', None, None),
