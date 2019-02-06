@@ -54,13 +54,19 @@ function kubectl() { echo "+ kubectl $@"; command kubectl $@; }
   * **`g`**=`get`
   * **`d`**=`describe`
   * **`rm`**=`delete`
-  * **`a`**:`apply -f`
+  * **`a`**: `apply -f`
   * **`ex`**: `exec -i -t`
   * **`lo`**: `logs -f`
 * resources:
-  * **`po`**=pod, **`dep`**=`deployment`, **`ing`**=`ingress`,
-    **`svc`**=`service`, **`cm`**=`configmap`, **`sec`=`secret`**,
-    **`ns`**=`namespace`, **`no`**=`node`
+  * **`po`**=`pod`
+  * **`dep`**=`deployment`
+  * **`sts`**=`statefulset`
+  * **`ing`**=`ingress`
+  * **`svc`**=`service`
+  * **`cm`**=`configmap`
+  * **`sec`**=`secret`
+  * **`ns`**=`namespace`
+  * **`no`**=`node`
 * flags:
   * output format: **`oyaml`**, **`ojson`**, **`owide`**
   * **`all`**: `--all` or `--all-namespaces` depending on the command
