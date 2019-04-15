@@ -18,7 +18,7 @@
 from __future__ import print_function
 import itertools
 import os.path
-import sys
+import sys, getopt
 
 try:
     xrange  # Python 2
@@ -26,7 +26,7 @@ except NameError:
     xrange = range  # Python 3
 
 
-def main():
+def main(argv):
     # (alias, full, allow_when_oneof, incompatible_with)
     cmds = [('k', 'kubectl', None, None)]
 
@@ -95,10 +95,25 @@ def main():
                          'license_header')
         with open(header_path, 'r') as f:
             print(f.read())
-    for cmd in out:
-        print("alias {}='{}'".format(''.join([a[0] for a in cmd]),
-              ' '.join([a[1] for a in cmd])))
 
+    # setting the output format from arg
+    output = 'bash'
+    try:
+        opts, args = getopt.getopt(argv,"o:",["output="])
+    except getopt.GetoptError:
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt in ("-o", "--output"):
+            output = arg
+
+    for cmd in out:
+        if output == "bash":
+            print("alias {}='{}'".format(''.join([a[0] for a in cmd]),
+              ' '.join([a[1] for a in cmd])))
+        elif output in ("ps1", "powershell"):
+            tpl = "function {}([Parameter(ValueFromRemainingArguments = $true)]$params) {{ & {} $params }}"
+            print(tpl.format(''.join([a[0] for a in cmd]),
+              ' '.join([a[1] for a in cmd])))
 
 def gen(parts):
     out = [()]
@@ -177,7 +192,4 @@ def diff(a, b):
 
 
 if __name__ == '__main__':
-    main()
-
-
-			
+   main(sys.argv[1:])

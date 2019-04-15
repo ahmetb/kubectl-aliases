@@ -7,6 +7,8 @@ convenient kubectl aliases programmatically.
 
 Some of the 800 generated aliases are:
 
+#### Bash
+
 ```sh
 alias k='kubectl'
 alias kg='kubectl get'
@@ -30,7 +32,33 @@ alias kgwf='kubectl get --watch -f'
 
 See [the full list](.kubectl_aliases).
 
+#### PowerShell
+
+```powershell
+function k([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl $params }
+function kg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get $params }
+function kgpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods $params }
+
+function ksysgpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods $params }
+
+function krm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete $params }
+function krmf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete --recursive -f $params }
+function krming([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress $params }
+function krmingl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress -l $params }
+function krmingall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress --all $params }
+
+function kgsvcoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml $params }
+function kgsvcwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --namespace $params }
+
+function kgwf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --recursive -f $params }
+...
+```
+
+See [the full list](kubectl_aliases.ps1).
+
 ### Installation
+
+#### Bash
 
 You can directly download the [`.kubectl_aliases` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases)
 and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
@@ -44,6 +72,19 @@ and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 
 ```sh
 function kubectl() { echo "+ kubectl $@"; command kubectl $@; }
+```
+
+#### PowerShell
+You can directly download the [`kubectl_aliases.ps1` file](https://rawgit.com/ahmetb/kubectl-alias/master/kubectl_aliases.ps1) and save it to PowerShell profile directory: `$Home\Documents\WindowsPowerShell\` then run this command to edit your `profile.ps1`:
+
+```powershell
+'. $Home\Documents\WindowsPowerShell\kubectl_aliases.ps1' | Out-File $PROFILE.CurrentUserAllHosts -Encoding ascii -Append
+```
+
+**Print the full command before running it:** Add this to your `profile.ps1` file:
+
+```powershell
+function kubectl([Parameter(ValueFromRemainingArguments = $true)]$params) { Write-Output "> kubectl $(@($params | ForEach-Object {$_}) -join ' ')"; & kubectl.exe $params; }
 ```
 
 ### Syntax explanation
@@ -69,13 +110,21 @@ function kubectl() { echo "+ kubectl $@"; command kubectl $@; }
 * value flags (should be at the end):
   * **`f`**=`-f/--filename`
   * **`l`**=`-l/--selector`
-  
+
 ### FAQ
 
-**Does this not slow down my shell start up?** Sourcing the file that contains
+**Does this not slow down my shell start up?**
+
+Sourcing the file that contains
 ~500 aliases takes about 30-45 milliseconds in my shell (zsh). I don't think
 it's a big deal for me. Measure it with `echo $(($(date +%s%N)/1000000))`
 command yourself in your .bashrc/.zshrc.
+
+**How to regenerate the PowerShell aliases file?**
+```powershell
+# powershell
+generate_aliases.py --output ps1 | Out-File -Encoding ascii kubectl_aliases.ps1
+```
 
 ### Authors
 
