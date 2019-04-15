@@ -60,8 +60,7 @@ See [the full list](kubectl_aliases.ps1).
 
 #### Bash
 
-You can directly download the [`.kubectl_aliases` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases)
-and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
+You can directly download the [`.kubectl_aliases`](.kubectl_aliases) file and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 
 ```sh
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
@@ -75,7 +74,7 @@ function kubectl() { echo "+ kubectl $@"; command kubectl $@; }
 ```
 
 #### PowerShell
-You can directly download the [`kubectl_aliases.ps1` file](https://rawgit.com/ahmetb/kubectl-alias/master/kubectl_aliases.ps1) and save it to PowerShell profile directory: `$Home\Documents\WindowsPowerShell\` then run this command to edit your `profile.ps1`:
+You can directly download the [`kubectl_aliases.ps1`](kubectl_aliases.ps1) file and save it to PowerShell profile directory: `$Home\Documents\WindowsPowerShell\` then run this command to edit your `profile.ps1`:
 
 ```powershell
 '. $Home\Documents\WindowsPowerShell\kubectl_aliases.ps1' | Out-File $PROFILE.CurrentUserAllHosts -Encoding ascii -Append
