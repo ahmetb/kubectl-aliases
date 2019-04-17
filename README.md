@@ -21,10 +21,10 @@ alias krmingl='kubectl delete ingress -l'
 alias krmingall='kubectl delete ingress --all-namespaces'
 
 alias kgsvcoyaml='kubectl get service -o=yaml'
-alias kgsvcwn='kubectl get service --watch --namespace'
-alias kgsvcslwn='kubectl get service --watch --show-labels --namespace'
+alias kgsvcwn='watch kubectl get service --namespace'
+alias kgsvcslwn='watch kubectl get service --show-labels --namespace'
 
-alias kgwf='kubectl get --watch -f'
+alias kgwf='watch kubectl get -f'
 ...
 ```
 
@@ -72,10 +72,18 @@ function kubectl() { echo "+ kubectl $@"; command kubectl $@; }
   
 ### FAQ
 
-**Does this not slow down my shell start up?** Sourcing the file that contains
+- **Doesn't this slow down my shell start up?** Sourcing the file that contains
 ~500 aliases takes about 30-45 milliseconds in my shell (zsh). I don't think
 it's a big deal for me. Measure it with `echo $(($(date +%s%N)/1000000))`
 command yourself in your .bashrc/.zshrc.
+
+- **Can I add more Kubernetes resource types to this?** Please consider forking
+  this repo and adding the resource types you want. Not all resource types are
+  used by everyone, and adding more resource types slows down shell initialization
+  see above).
+
+- **Where can I find PowerShell aliases for kubectl?** There’s a fork of this
+  [here](https://github.com/shanoor/kubectl-aliases-powershell).
 
 ### Authors
 
