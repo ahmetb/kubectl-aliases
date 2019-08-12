@@ -67,6 +67,7 @@ function kubectl() { echo "+ kubectl $@"; command kubectl $@; }
   * **`sl`**: `--show-labels`
   * **`w`**=`-w/--watch`
 * value flags (should be at the end):
+  * **`n`**=`-n/--namespace`
   * **`f`**=`-f/--filename`
   * **`l`**=`-l/--selector`
   
