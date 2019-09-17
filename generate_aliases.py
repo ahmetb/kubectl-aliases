@@ -38,6 +38,7 @@ def main():
         ('lo', 'logs -f', None, None),
         ('lop', 'logs -f -p', None, None),
         ('p', 'proxy', None, ['sys']),
+        ('pf', 'port-forward', None, ['sys']),
         ('g', 'get', None, None),
         ('d', 'describe', None, None),
         ('rm', 'delete', None, None),
@@ -73,7 +74,7 @@ def main():
     positional_args = [('f', '--recursive -f', ['g', 'd', 'rm'], res_types + ['all'
                        , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm'], ['f',
                        'all']), ('n', '--namespace', ['g', 'd', 'rm',
-                       'lo', 'ex'], ['ns', 'no', 'sys', 'all'])]
+                       'lo', 'ex', 'pf'], ['ns', 'no', 'sys', 'all'])]
 
     # [(part, optional, take_exactly_one)]
     parts = [
