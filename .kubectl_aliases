@@ -800,3 +800,6 @@ alias kgdepwowidesln='kubectl get deployment --watch -o=wide --show-labels --nam
 alias kgwslowiden='kubectl get --watch --show-labels -o=wide --namespace'
 alias kgpowslowiden='kubectl get pods --watch --show-labels -o=wide --namespace'
 alias kgdepwslowiden='kubectl get deployment --watch --show-labels -o=wide --namespace'
+alias kgds='kubectl get daemonset'
+alias kgdsn='kubectl get daemonset --namespace'
+alias kgdsall='kubectl get daemonset --all-namespaces'
