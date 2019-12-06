@@ -34,6 +34,8 @@ def main():
 
     ops = [
         ('a', 'apply --recursive -f', None, None),
+        ('ak', 'apply -k', None, ['sys']),
+        ('k', 'kustomize', None, ['sys']),
         ('ex', 'exec -i -t', None, None),
         ('lo', 'logs -f', None, None),
         ('lop', 'logs -f -p', None, None),
