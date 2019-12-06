@@ -55,6 +55,8 @@ function kubectl() { echo "+ kubectl $@">&2; command kubectl $@; }
   * **`d`**=`describe`
   * **`rm`**=`delete`
   * **`a`**:`apply -f`
+  * **`ak`**:`apply -k`
+  * **`k`**:`kustomize`
   * **`ex`**: `exec -i -t`
   * **`lo`**: `logs -f`
 * resources:
