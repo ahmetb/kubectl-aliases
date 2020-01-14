@@ -3,6 +3,12 @@
 This repository contains [a script](generate_aliases.py) to generate hundreds of
 convenient kubectl aliases programmatically.
 
+It creates aliases for long command/option permutations you might use, like:
+
+    alias ksysgdepwslowidel='kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide -l'
+
+Confused? Read on.
+
 ### Examples
 
 Some of the 800 generated aliases are:
