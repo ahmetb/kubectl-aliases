@@ -63,6 +63,7 @@ def main():
         ('oyaml', '-o=yaml', ['g'], ['owide', 'ojson', 'sl']),
         ('owide', '-o=wide', ['g'], ['oyaml', 'ojson']),
         ('ojson', '-o=json', ['g'], ['owide', 'oyaml', 'sl']),
+        ('a', 'all', ['g'], None),
         ('all', '--all-namespaces', ['g', 'd'], ['rm', 'f', 'no', 'sys'
          ]),
         ('sl', '--show-labels', ['g'], ['oyaml', 'ojson']
