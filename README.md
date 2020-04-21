@@ -46,6 +46,11 @@ and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
 ```
 
+Installation with [zplug](https://github.com/zplug/zplug):
+```
+zplug "ahmetb/kubectl-aliases", hook-build: "python generate_aliases.py > kubectl-aliases.zsh"
+```
+
 **Print the full command before running it:** Add this to your `.bashrc` or
 `.zshrc` file:
 
