@@ -67,7 +67,7 @@ function kubectl() { echo "+ kubectl $@">&2; command kubectl $@; }
   * **`ex`**: `exec -i -t`
   * **`lo`**: `logs -f`
 * resources:
-  * **`po`**=pod, **`dep`**=`deployment`, **`ing`**=`ingress`,
+  * **`po`**=pod, **`dep`**=`deployment`, **`sts`**=`statefulset`, **`ing`**=`ingress`,
     **`svc`**=`service`, **`cm`**=`configmap`, **`sec`=`secret`**,
     **`ns`**=`namespace`, **`no`**=`node`
 * flags:
