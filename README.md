@@ -50,7 +50,7 @@ and save it in your $HOME directory, then edit your .bashrc/.zshrc file with:
 > `kubectl [...] --watch`, run it like this:
 >
 >     [ -f ~/.kubectl_aliases ] && source \
->        <(cat ~/.kubectl_aliases | sed -r 's/(kubectl.*) --watch/watch\1/g')
+>        <(cat ~/.kubectl_aliases | sed -r 's/(kubectl.*) --watch/watch \1/g')
 
 **Print the full command before running it:** Add this to your `.bashrc` or
 `.zshrc` file:
