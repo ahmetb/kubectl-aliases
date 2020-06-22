@@ -89,7 +89,6 @@ def main():
         ]
 
     out = gen(parts)
-    out = filter(is_valid, out)
 
     # prepare output
     if not sys.stdout.isatty():
@@ -127,7 +126,8 @@ def gen(parts):
         new_out = []
         for segment in combos:
             for stuff in orig:
-                new_out.append(stuff + segment)
+                if is_valid(stuff + segment):
+                    new_out.append(stuff + segment)
         out = new_out
     return out
 
@@ -181,6 +181,3 @@ def diff(a, b):
 
 if __name__ == '__main__':
     main()
-
-
-			
