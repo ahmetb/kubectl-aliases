@@ -56,6 +56,8 @@ def main():
         ('sec', 'secret', ['g', 'd', 'rm'], None),
         ('no', 'nodes', ['g', 'd'], ['sys']),
         ('ns', 'namespaces', ['g', 'd', 'rm'], ['sys']),
+        ('pv', 'persistentvolume', ['g', 'd'], None),
+        ('pvc', 'persistentvolumeclaim', ['g', 'd'], None),
         ]
     res_types = [r[0] for r in res]
 
