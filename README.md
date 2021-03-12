@@ -73,9 +73,10 @@ function kubectl() { echo "+ kubectl $@">&2; command kubectl $@; }
   * **`ex`**: `exec -i -t`
   * **`lo`**: `logs -f`
 * resources:
-  * **`po`**=pod, **`dep`**=`deployment`, **`ing`**=`ingress`,
-    **`svc`**=`service`, **`cm`**=`configmap`, **`sec`=`secret`**,
-    **`ns`**=`namespace`, **`no`**=`node`
+  * **`po`**=pod, **`dep`**=`deployment`, **`rs`**=`replicaset`,
+    **`ss`**=`statefulsets`, **`ing`**=`ingress`, **`svc`**=`service`,
+    **`cm`**=`configmap`, **`sec`=`secret`**, **`ns`**=`namespace`,
+    **`no`**=`node`
 * flags:
   * output format: **`oyaml`**, **`ojson`**, **`owide`**
   * **`all`**: `--all` or `--all-namespaces` depending on the command
@@ -85,7 +86,7 @@ function kubectl() { echo "+ kubectl $@">&2; command kubectl $@; }
   * **`n`**=`-n/--namespace`
   * **`f`**=`-f/--filename`
   * **`l`**=`-l/--selector`
-  
+
 ### FAQ
 
 - **Doesn't this slow down my shell start up?** Sourcing the file that contains
