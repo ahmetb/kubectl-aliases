@@ -88,6 +88,17 @@ def main():
         (positional_args, True, True),
         ]
 
+    shellFormatting = {
+        "bash": "alias {}='{}'",
+        "zsh": "alias {}='{}'",
+        "fish": "abbr --add {} \"{}\"",
+    }
+
+    shell = sys.argv[1] if len(sys.argv) > 1 else "bash"
+    if shell not in shellFormatting:
+        raise ValueError("Shell \"{}\" not supported. Options are {}"
+                        .format(shell, [key for key in shellFormatting]))
+
     out = gen(parts)
 
     # prepare output
@@ -97,8 +108,9 @@ def main():
                          'license_header')
         with open(header_path, 'r') as f:
             print(f.read())
+
     for cmd in out:
-        print("alias {}='{}'".format(''.join([a[0] for a in cmd]),
+        print(shellFormatting[shell].format(''.join([a[0] for a in cmd]),
               ' '.join([a[1] for a in cmd])))
 
 
