@@ -91,7 +91,7 @@ test -f ~/.kubectl_aliases.fish && source ~/.kubectl_aliases.fish
   * **`lo`**: `logs -f`
 * resources:
   * **`po`**=pod, **`dep`**=`deployment`, **`ing`**=`ingress`,
-    **`svc`**=`service`, **`cm`**=`configmap`, **`sec`=`secret`**,
+    **`svc`**=`service`, **`cm`**=`configmap`, **`sec`**=`secret`,
     **`ns`**=`namespace`, **`no`**=`node`
 * flags:
   * output format: **`oyaml`**, **`ojson`**, **`owide`**
