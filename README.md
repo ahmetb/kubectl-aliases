@@ -39,7 +39,7 @@ See [the full list](.kubectl_aliases).
 
 ### Installation
 
-You can directly download the [`.kubectl_aliases` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases) for bash/zsh or the [`.kubectl_aliases.fish` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases) for fish and save it to your $HOME directory.
+You can directly download the [`.kubectl_aliases` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases) for bash/zsh or the [`.kubectl_aliases.fish` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases.fish) for fish and save it to your $HOME directory.
 
 #### Bash/Zsh
 
@@ -69,6 +69,9 @@ Add the following to your `~/.config/fish/config.fish` file:
 ```fish
 test -f ~/.kubectl_aliases.fish && source ~/.kubectl_aliases.fish
 ```
+
+This actually adds the more powerful fish [abbreviations](https://fishshell.com/docs/current/cmds/abbr.html)
+instead of aliases, so that pressing space shows the full command before execution.
 
 > **Recommendation:** If you want to use GNU `watch`  command instead of
 > `kubectl [...] --watch`, run it like this:
