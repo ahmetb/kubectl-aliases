@@ -39,7 +39,7 @@ See [the full list](.kubectl_aliases).
 
 ### Installation
 
-You can directly download the [`.kubectl_aliases` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases) for bash/zsh or the [`.kubectl_aliases.fish` file](https://rawgit.com/ahmetb/kubectl-alias/master/.kubectl_aliases) for fish and save it to your $HOME directory.
+You can directly download the [`.kubectl_aliases` file](https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases) for bash/zsh or the [`.kubectl_aliases.fish` file](https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases.fish) for fish and save it to your $HOME directory.
 
 #### Bash/Zsh
 
