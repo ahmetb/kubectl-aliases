@@ -93,7 +93,7 @@ test -f ~/.kubectl_aliases.fish && source ~/.kubectl_aliases.fish
   * **`po`**=pod, **`dep`**=`deployment`, **`ing`**=`ingress`,
     **`svc`**=`service`, **`cm`**=`configmap`, **`sec`**=`secret`,
     **`ns`**=`namespace`, **`no`**=`node`
-    ** :warning: Please do not suggest new resources here, instead fork the project.
+    **:warning: Please do not suggest new resources here, instead fork the project.**
 * flags:
   * output format: **`oyaml`**, **`ojson`**, **`owide`**
   * **`all`**: `--all` or `--all-namespaces` depending on the command
