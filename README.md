@@ -28,10 +28,10 @@ alias krmingl='kubectl delete ingress -l'
 alias krmingall='kubectl delete ingress --all-namespaces'
 
 alias kgsvcoyaml='kubectl get service -o=yaml'
-alias kgsvcwn='watch kubectl get service --namespace'
-alias kgsvcslwn='watch kubectl get service --show-labels --namespace'
+alias kgsvcwn='kubectl get service --watch --namespace'
+alias kgsvcslwn='kubectl get service --show-labels --watch --namespace'
 
-alias kgwf='watch kubectl get -f'
+alias kgwf='kubectl get --watch -f'
 ...
 ```
 
