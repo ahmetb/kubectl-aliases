@@ -37,6 +37,7 @@ def main():
         ('ak', 'apply -k', None, ['sys']),
         ('k', 'kustomize', None, ['sys']),
         ('ex', 'exec -i -t', None, None),
+        ('x', 'explain', None, ['sys']),
         ('lo', 'logs -f', None, None),
         ('lop', 'logs -f -p', None, None),
         ('p', 'proxy', None, ['sys']),
