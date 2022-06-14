@@ -6,7 +6,7 @@ command and --flag over and over again.
 
 An example shell alias created from command/flags permutation looks like:
 
-    alias ksysgdepwslowidel='kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide -l'
+ alias ksysgdepwslowidel='kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide -l'
 
 Confused? Read on.
 
