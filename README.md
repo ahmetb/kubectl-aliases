@@ -61,7 +61,7 @@ Add the following to your `.bashrc/.zshrc` file:
 `.zshrc` file:
 
 ```sh
-function kubectl() { echo "+ kubectl $@" >&2; command kubectl $@; }
+function kubectl() { echo "+ kubectl $@" >&2; command kubectl "$@"; }
 ```
 
 #### Fish
