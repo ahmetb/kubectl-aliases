@@ -61,7 +61,7 @@ def main():
         ('gc', 'get-contexts', ['c'], None),
         ('cc', 'current-context', ['c'], None),
         ('uc', 'use-context', ['c'], None),
-        ('sc', 'set-context --current --namespace=', ['c'], None),
+        ('sc', 'set-context --current', ['c'], None),
         ('v', 'view', ['c'], None),
         ]
     res_types = [r[0] for r in res]
