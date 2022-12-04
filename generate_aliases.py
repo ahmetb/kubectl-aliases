@@ -45,6 +45,7 @@ def main():
         ('d', 'describe', None, None),
         ('rm', 'delete', None, None),
         ('run', 'run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t', None, None),
+        ('c', 'config', None, ['sys'])
         ]
 
     res = [
@@ -57,6 +58,10 @@ def main():
         ('sec', 'secret', ['g', 'd', 'rm'], None),
         ('no', 'nodes', ['g', 'd'], ['sys']),
         ('ns', 'namespaces', ['g', 'd', 'rm'], ['sys']),
+        ('gc', 'get-contexts', ['c'], None),
+        ('cc', 'current-context', ['c'], None),
+        ('uc', 'use-context', ['c'], None),
+        ('sc', 'set-context --current --namespace=', ['c'], None),
         ]
     res_types = [r[0] for r in res]
 
