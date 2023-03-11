@@ -36,45 +36,64 @@ def main():
         ('a', 'apply --recursive -f', None, None),
         ('ak', 'apply -k', None, ['sys']),
         ('k', 'kustomize', None, ['sys']),
+        ('e', 'edit', None, None),
         ('ex', 'exec -i -t', None, None),
-        ('lo', 'logs -f', None, None),
-        ('lop', 'logs -f -p', None, None),
+        ('l', 'logs', None, None),
+        ('lf', 'logs -f', None, None),
+        ('lfp', 'logs -f -p', None, None),
         ('p', 'proxy', None, ['sys']),
         ('pf', 'port-forward', None, ['sys']),
         ('g', 'get', None, None),
         ('d', 'describe', None, None),
-        ('rm', 'delete', None, None),
+        ('D', 'delete', None, None),
         ('run', 'run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t', None, None),
+        ('r', 'rollout', None, None),
+        ('rr', 'rollout restart', None, None),
+        ('s', 'scale', None, None)
         ]
 
     res = [
-        ('po', 'pods', ['g', 'd', 'rm'], None),
-        ('dep', 'deployment', ['g', 'd', 'rm'], None),
-        ('sts', 'statefulset', ['g', 'd', 'rm'], None),
-        ('svc', 'service', ['g', 'd', 'rm'], None),
-        ('ing', 'ingress', ['g', 'd', 'rm'], None),
-        ('cm', 'configmap', ['g', 'd', 'rm'], None),
-        ('sec', 'secret', ['g', 'd', 'rm'], None),
-        ('no', 'nodes', ['g', 'd'], ['sys']),
-        ('ns', 'namespaces', ['g', 'd', 'rm'], ['sys']),
+        ('po', 'pods', ['e', 'g', 'd', 'D'], None),
+        ('rs', 'replicasets', ['e', 'g', 'd', 'D'], None),
+        ('dep', 'deployment', ['s', 'r', 'rr', 'e', 'g', 'd', 'D'], None),
+        ('sts', 'statefulset', ['s', 'r', 'rr', 'e', 'g', 'd', 'D'], None),
+        ('ds', 'daemonset', ['rr', 'e', 'g', 'd', 'D'], None),
+        ('j', 'job', ['s', 'e', 'g', 'd', 'D'], None),
+        ('cj', 'cronjob', ['e', 'g', 'd', 'D'], None),
+        ('hpa', 'hpa', ['e', 'g', 'd', 'D'], None),
+        ('svc', 'service', ['e', 'g', 'd', 'D'], None),
+        ('ing', 'ingress', ['e', 'g', 'd', 'D'], None),
+        ('cm', 'configmap', ['e', 'g', 'd', 'D'], None),
+        ('sec', 'secret', ['e', 'g', 'd', 'D'], None),
+        ('pvc', 'pvc', ['e', 'g', 'd', 'D'], None),
+        ('pv', 'pv', ['e', 'g', 'd', 'D'], None),
+        ('csi', 'csidriver', ['e', 'g', 'd', 'D'], None),
+        ('sc', 'storageclass', ['e', 'g', 'd', 'D'], None),
+        ('sa', 'serviceaccount', ['e', 'g', 'd', 'D'], None),
+        ('cr', 'clusterrole', ['e', 'g', 'd', 'D'], None),
+        ('crb', 'clusterrolebinding', ['e', 'g', 'd', 'D'], None),
+        ('r', 'role', ['e', 'g', 'd', 'D'], None),
+        ('rb', 'rolebinding', ['e', 'g', 'd', 'D'], None),
+        ('no', 'nodes', ['e', 'g', 'd'], ['sys']),
+        ('ns', 'namespaces', ['e', 'g', 'd', 'D'], ['sys']),
         ]
     res_types = [r[0] for r in res]
 
     args = [
-        ('oyaml', '-o=yaml', ['g'], ['owide', 'ojson', 'sl']),
-        ('owide', '-o=wide', ['g'], ['oyaml', 'ojson']),
-        ('ojson', '-o=json', ['g'], ['owide', 'oyaml', 'sl']),
-        ('all', '--all-namespaces', ['g', 'd'], ['rm', 'f', 'no', 'sys']),
+        ('oyaml', '-o=yaml', ['g'], ['ow', 'ojson', 'sl']),
+        ('ow', '-o=wide', ['g'], ['oyaml', 'ojson']),
+        ('ojson', '-o=json', ['g'], ['ow', 'oyaml', 'sl']),
+        ('all', '--all-namespaces', ['g', 'd'], ['D', 'f', 'no', 'sys']),
         ('sl', '--show-labels', ['g'], ['oyaml', 'ojson'], None),
-        ('all', '--all', ['rm'], None), # caution: reusing the alias
-        ('w', '--watch', ['g'], ['oyaml', 'ojson', 'owide']),
+        ('all', '--all', ['D'], None), # caution: reusing the alias
+        ('w', '--watch', ['g'], ['oyaml', 'ojson', 'ow']),
         ]
 
     # these accept a value, so they need to be at the end and
     # mutually exclusive within each other.
-    positional_args = [('f', '--recursive -f', ['g', 'd', 'rm'], res_types + ['all'
-                       , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm'], ['f',
-                       'all']), ('n', '--namespace', ['g', 'd', 'rm',
+    positional_args = [('f', '--recursive -f', ['g', 'd', 'D'], res_types + ['all'
+                       , 'l', 'sys']), ('l', '-l', ['g', 'd', 'D'], ['f',
+                       'all']), ('n', '--namespace', ['g', 'd', 'D',
                        'lo', 'ex', 'pf'], ['ns', 'no', 'sys', 'all'])]
 
     # [(part, optional, take_exactly_one)]
@@ -98,7 +117,10 @@ def main():
         raise ValueError("Shell \"{}\" not supported. Options are {}"
                         .format(shell, [key for key in shellFormatting]))
 
-    out = gen(parts)
+
+    kubectx_kubens = [(('kx', 'kubectx', None, None),), (('kn', 'kubens', None, None),)]
+    out = kubectx_kubens + gen(parts)
+    # out = gen(parts)
 
     # prepare output
     if not sys.stdout.isatty():
