@@ -48,15 +48,16 @@ def main():
         ]
 
     res = [
-        ('p', 'pods', ['g', 'd', 'rm'], None),
-        ('d', 'deployment', ['g', 'd', 'rm'], None),
-        ('sts', 'statefulset', ['g', 'd', 'rm'], None),
-        ('svc', 'service', ['g', 'd', 'rm'], None),
-        ('ing', 'ingress', ['g', 'd', 'rm'], None),
-        ('cm', 'configmap', ['g', 'd', 'rm'], None),
-        ('sec', 'secret', ['g', 'd', 'rm'], None),
+        ('a', 'all', ['g', 'd'], None),
+        ('p', 'pods', ['g', 'd', 'del'], None),
+        ('d', 'deployment', ['g', 'd', 'del'], None),
+        ('sts', 'statefulset', ['g', 'd', 'del'], None),
+        ('s', 'service', ['g', 'd', 'del'], None),
+        ('ing', 'ingress', ['g', 'd', 'del'], None),
+        ('cm', 'configmap', ['g', 'd', 'del'], None),
+        ('sec', 'secret', ['g', 'd', 'del'], None),
         ('no', 'nodes', ['g', 'd'], ['sys']),
-        ('ns', 'namespaces', ['g', 'd', 'rm'], ['sys']),
+        ('ns', 'namespaces', ['g', 'd', 'del'], ['sys']),
         ]
     res_types = [r[0] for r in res]
 
