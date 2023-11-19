@@ -108,9 +108,18 @@ def main():
         with open(header_path, 'r') as f:
             print(f.read())
 
+    seen_aliases = set()
+
     for cmd in out:
-        print(shellFormatting[shell].format(''.join([a[0] for a in cmd]),
-              ' '.join([a[1] for a in cmd])))
+        alias = ''.join([a[0] for a in cmd])
+        command = ' '.join([a[1] for a in cmd])
+
+        if alias in seen_aliases:
+            print("Alias conflict detected: {}".format(alias), file=sys.stderr)
+
+        seen_aliases.add(alias)
+
+        print(shellFormatting[shell].format(alias, command))
 
 
 def gen(parts):
