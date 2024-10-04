@@ -112,17 +112,17 @@ instead of aliases, so that pressing space shows the full command before executi
 
 ### Syntax reference table
 
-        | base    | [system]   | commands           | resources            | [flags]               | [value flags]    |
-        |---------|------------|:------------------:|:--------------------:|-----------------------|------------------|
-        |         |            | <span style="color:green">**g**</span>et            | <span style="color:green">**po**</span>d              | <span style="color:green">**oyaml**</span>             |                  |
-        |         |            | <span style="color:green">**d**</span>escribe       | <span style="color:green">**dep**</span>loyment       | <span style="color:green">**ojson**</span>             |                  |
-        |         | -n=kube-   | <span style="color:green">**rm**</span> = delete    | <span style="color:green">**ing**</span>gress         | <span style="color:green">**owide**</span>             | --<span style="color:green">**n**</span>amespace  |
-        |  <span style="color:green">**k**</span>  | <span style="color:green">**sys**</span>tem | <span style="color:green">**a**</span>pply -f       | <span style="color:green">**s**</span>er<span style="color:green">**v**</span>i<span style="color:green">**c**</span>e  | --<span style="color:green">**all**</span>[-namespace] | --<span style="color:green">**f**</span>ilename   |
-        |         |            | <span style="color:green">**a**</span>pply -<span style="color:green">**k**</span>   | <span style="color:green">**c**</span>onfig<span style="color:green">**m**</span>ap    | --<span style="color:green">**s**</span>how-<span style="color:green">**l**</span>abels | --se<span style="color:green">**l**</span>ector   |
-        |         |            | <span style="color:green">**k**</span>ustomize      | <span style="color:green">**sec**</span>ret           | --<span style="color:green">**w**</span>atch           |                  |
-        |         |            | <span style="color:green">**e**</span>dit -i -t     | <span style="color:green">**n**</span>ame<span style="color:green">**s**</span>pace    |                       |                  |
-        |         |            | e<span style="color:green">**x**</span>ec -i -t     |      |                       |                  |
-        |         |            | <span style="color:green">**lo**</span>gs -f        | <span style="color:green">**no**</span>de             |                       |                  |
+| base      | [system]  | commands         | resources        | [flags]             | [value flags]    |
+|-----------|-----------|:----------------:|:----------------:|---------------------|------------------|
+|           |           | `g`et            | `po`d            | `oyaml`             |                  |
+|           |           | `d`escribe       | `dep`loyment     | `ojson`             |                  |
+|           | -n=kube-  | `rm` = delete    | `ing`gress       | `owide`             | --`n`amespace    |
+| `k`ubectl | `sys`tem  | `a`pply -f       | `s`er`v`i`c`e    | --`all`[-namespace] | --`f`ilename     |
+|           |           | `a`pply -`k`     | `c`onfig`m`ap    | --`s`how-`l`abels   | --se`l`ector     |
+|           |           | `k`ustomize      | `sec`ret         | --`w`atch           |                  |
+|           |           | `e`dit -i -t     | `n`ame`s`pace    |                     |                  |
+|           |           | `lo`gs -f        | `no`de           |                     |                  |
+|           |           | e`x`ec -i -t     |                  |                     |                  |
 
 
 ### Running the script
