@@ -117,7 +117,7 @@ instead of aliases, so that pressing space shows the full command before executi
 |           |           | `g`et            | `po`d            | `oyaml`             |                  |
 |           |           | `d`escribe       | `dep`loyment     | `ojson`             |                  |
 |           | -n=kube-  | `rm` = delete    | `ing`gress       | `owide`             | --`n`amespace    |
-| `k`ubectl | `sys`tem  | `a`pply -f       | `s`er`v`i`c`e    | --`all`[-namespace] | --`f`ilename     |
+| `k`ubectl | `sys`tem  | `a`pply --recursive -f | `s`er`v`i`c`e    | --`all`[-namespace] | --`f`ilename     |
 |           |           | `a`pply -`k`     | `c`onfig`m`ap    | --`s`how-`l`abels   | --se`l`ector     |
 |           |           | `k`ustomize      | `sec`ret         | --`w`atch           |                  |
 |           |           | `e`dit           | `n`ame`s`pace    |                     |                  |
