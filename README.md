@@ -120,11 +120,9 @@ instead of aliases, so that pressing space shows the full command before executi
 | `k`ubectl | `sys`tem  | `a`pply -f       | `s`er`v`i`c`e    | --`all`[-namespace] | --`f`ilename     |
 |           |           | `a`pply -`k`     | `c`onfig`m`ap    | --`s`how-`l`abels   | --se`l`ector     |
 |           |           | `k`ustomize      | `sec`ret         | --`w`atch           |                  |
-|           |           | `e`dit -i -t     | `n`ame`s`pace    |                     |                  |
+|           |           | `e`dit           | `n`ame`s`pace    |                     |                  |
 |           |           | `lo`gs -f        | `no`de           |                     |                  |
 |           |           | e`x`ec -i -t     |                  |                     |                  |
-
-N.B.: the kx shortcut only takes pod as argument. ksysx is not added, use kxn instead. Other combination makes no sense for kx.
 
 ### Running the script
 
