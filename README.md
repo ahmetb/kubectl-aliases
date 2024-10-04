@@ -110,7 +110,7 @@ instead of aliases, so that pressing space shows the full command before executi
   * **`f`**=`-f/--filename`
   * **`l`**=`-l/--selector`
 
-### Syntax reference table
+### Syntax reference table (optional columns are in [])
 
 | base      | [system]  | commands         | resources        | [flags]             | [value flags]    |
 |-----------|-----------|:----------------:|:----------------:|---------------------|------------------|
@@ -124,6 +124,7 @@ instead of aliases, so that pressing space shows the full command before executi
 |           |           | `lo`gs -f        | `no`de           |                     |                  |
 |           |           | e`x`ec -i -t     |                  |                     |                  |
 
+N.B.: the kx shortcut only takes pod as argument. ksysx is not added, use kxn instead. Other combination makes no sense for kx.
 
 ### Running the script
 
