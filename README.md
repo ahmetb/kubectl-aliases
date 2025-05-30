@@ -58,11 +58,47 @@ Add the following to your `.bashrc/.zshrc` file:
 >     [ -f ~/.kubectl_aliases ] && source \
 >        <(cat ~/.kubectl_aliases | sed -r 's/(kubectl.*) --watch/watch \1/g')
 
-**Print the full command before running it:** Add this to your `.bashrc` or
-`.zshrc` file:
+**Print the full command before running it:**
+
+Add this to your `.bashrc`
 
 ```sh
-function kubectl() { echo "+ kubectl $@" >&2; command kubectl "$@"; }
+trap '[[ "$BASH_COMMAND" == "kubectl "* ]] && echo "+ $BASH_COMMAND"' DEBUG
+```
+
+Add this to your `.zshrc`
+
+```sh
+preexec() {
+  local cmd="$1"
+
+  # Remove leading whitespace
+  cmd=${cmd##[[:space:]]#}
+
+  # Extract first word
+  local first_word=${cmd%% *}
+
+  # Check if it's a direct kubectl command
+  if [[ "$first_word" == "kubectl" ]]; then
+    return
+  fi
+
+  # Check if it's a kubectl alias
+  local alias_def=$(alias "$first_word" 2>/dev/null)
+  if [[ -n "$alias_def" ]]; then
+    # Extract alias value and remove quotes
+    local expanded=${alias_def#*=}
+    expanded=${expanded#[\'\"]}
+    expanded=${expanded%[\'\"]}
+
+    # Check if alias expands to kubectl
+    if [[ "${expanded%% *}" == "kubectl" ]]; then
+      # Get the rest of the command
+      local rest=${cmd#"$first_word"}
+      echo "+ $expanded$rest"
+    fi
+  fi
+}
 ```
 
 #### Fish
